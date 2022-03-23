@@ -2,7 +2,7 @@ package com.bridgelabz;
 
 public class EmployeeWages {
 
-    public static void main(String args[])
+    public static void calculateTotalWage()
     {
         final int PART_TIME = 1;
         final int FULL_TIME = 2;
@@ -12,12 +12,12 @@ public class EmployeeWages {
 
         int totalWage = 0;
         int workingHrs = 0;
-        //System.out.printf("\n", "Day", "Workinghrs", "Wage", "Total working hrs");
+      //  System.out.printf("\n", "Day", "Workinghrs", "Wage", "Total working hrs");
         for (int day = 1, totalWorkingHrs = 0; day <= MAX_WORKING_DAYS
                 && totalWorkingHrs < MAX_WORKING_HRS; day++, totalWorkingHrs += workingHrs)
         {
 
-            int empType = (int) ((Math.random() * 100) % 3);
+            int empType = (int) (Math.random() * 100) % 3;
             switch (empType)
             {
                 case FULL_TIME:
@@ -35,7 +35,12 @@ public class EmployeeWages {
             System.out.println("Total Working Days :" +day);
             System.out.println("Wages:" +wage);
             System.out.println("Total Working Hours :" +totalWorkingHrs );
+
         }
         System.out.println("Total wage for a month is " + totalWage);
+    }
+
+    public static void main(String[] args) {
+        EmployeeWages.calculateTotalWage();
     }
 }
