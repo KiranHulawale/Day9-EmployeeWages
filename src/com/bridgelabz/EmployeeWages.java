@@ -2,24 +2,23 @@ package com.bridgelabz;
 
 public class EmployeeWages {
 
-    public static void main(String args[])
+   public static void calculateTotalWage(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs)
     {
         final int PART_TIME = 1;
         final int FULL_TIME = 2;
-        final int WAGE_PER_HR = 20;
-        final int MAX_WORKING_DAYS = 20;
-        final int MAX_WORKING_HRS = 100;
-
         int totalWage = 0;
         int workingHrs = 0;
-        //System.out.printf("\n", "Day", "Workinghrs", "Wage", "Total working hrs");
-        for (int day = 1, totalWorkingHrs = 0; day <= MAX_WORKING_DAYS
-                && totalWorkingHrs < MAX_WORKING_HRS; day++, totalWorkingHrs += workingHrs)
-        {
 
-            int empType = (int) ((Math.random() * 100) % 3);
-            switch (empType)
-            {
+        System.out.println("Details of " + companyName + " employee");
+        System.err.println("Wage per hour:" + wagePerHr);
+        System.out.println("Maximum working days:" + maxWorkingDays);
+        System.out.println("Maximum working hours:" + maxWorkingHrs);
+        // System.out.printf("\n", "Day", "Workinghrs", "Wage", "Total working hrs");
+       
+             for (int day = 1, totalWorkingHrs = 0; day <= maxWorkingDays
+                && totalWorkingHrs <= maxWorkingHrs; day++, totalWorkingHrs += workingHrs) {
+            int empType = (int) (Math.random() * 100) % 3;
+            switch (empType) {
                 case FULL_TIME:
                     workingHrs = 8;
                     break;
@@ -30,12 +29,17 @@ public class EmployeeWages {
                     workingHrs = 0;
                     break;
             }
-            int wage = workingHrs * WAGE_PER_HR;
+            int wage = workingHrs * wagePerHr;
             totalWage += wage;
-            System.out.println("Total Working Days :" +day);
-            System.out.println("Wages:" +wage);
-            System.out.println("Total Working Hours :" +totalWorkingHrs );
+            System.out.println("Total Working Days :" + day);
+            System.out.println("Wages:" + wage);
+            System.out.println("Total Working Hours :" + totalWorkingHrs);
         }
-        System.out.println("Total wage for a month is " + totalWage);
+        System.out.println("Total wage for a month of " + companyName + " employee is " + totalWage + "\n");
+    }
+    
+    public static void main(String[] args) {
+        EmployeeWages.calculateTotalWage("Amazon", 40, 15, 200);
+        EmployeeWages.calculateTotalWage("Infosys", 20, 20, 100);
     }
 }
