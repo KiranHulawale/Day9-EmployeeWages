@@ -1,4 +1,7 @@
 package com.bridgelabz;
+import java.util.ArrayList;
+import  java.util.HashMap;
+
 
 interface IEmployeeWageComputation
 {
@@ -46,15 +49,19 @@ class EmployeeWageComputation implements IEmployeeWageComputation {
     public static final int FULL_TIME = 2;
     int noOfCompanies, index;
     EmployeeWages[] companies;
+    ArrayList<EmployeeWages> companies;
+    HashMap<String, Integer> totalEmpWages;
 
-    public EmployeeWageComputation(int noOfCompanies) {
-        this.noOfCompanies = noOfCompanies;
-        companies = new EmployeeWages[noOfCompanies];
-        index = 0;
+    public EmployeeWageComputation()
+    {
+        companies = new ArrayList<>();
+        totalEmpWages = new HashMap<>();
     }
 
     public void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs) {
-        companies[index++] = new EmployeeWages(companyName, wagePerHr, maxWorkingDays, maxWorkingHrs);
+        EmployeeWages company = new EmployeeWages(companyName, wagePerHr, maxWorkingDays, maxWorkingHrs);
+        companies.add(company);
+        totalEmpWages.put(companyName,0);
     }
 
     int generateEmployeeType() {
