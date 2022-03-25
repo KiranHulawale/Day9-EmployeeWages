@@ -61,7 +61,7 @@ class EmployeeWageComputation implements IEmployeeWageComputation {
     public void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs) {
         EmployeeWages company = new EmployeeWages(companyName, wagePerHr, maxWorkingDays, maxWorkingHrs);
         companies.add(company);
-        totalEmpWages.put(companyName,0);
+        totalEmpWages.put(companyName,0); //Mapping string value to key
     }
 
     int generateEmployeeType() {
