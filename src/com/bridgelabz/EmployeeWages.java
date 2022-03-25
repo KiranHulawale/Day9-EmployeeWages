@@ -1,5 +1,6 @@
 package com.bridgelabz;
 import java.util.ArrayList;
+import  java.util.HashMap;
 
 interface IEmployeeWageComputation
 {
@@ -49,16 +50,19 @@ class EmployeeWageComputation implements IEmployeeWageComputation
     public static final int FULL_TIME = 2;
     // instance variables
     ArrayList<EmployeeWages> companies;
+    HashMap<String, Integer> totalEmpWages;
 
     public EmployeeWageComputation()
     {
         companies = new ArrayList<>();
+        totalEmpWages = new HashMap<>();
     }
 
     public void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs)
     {
         EmployeeWages company = new EmployeeWages(companyName, wagePerHr, maxWorkingDays, maxWorkingHrs);
         companies.add(company);
+        totalEmpWages.put(companyName,0);
     }
 
     int generateEmployeeType()
@@ -107,6 +111,10 @@ class EmployeeWageComputation implements IEmployeeWageComputation
         return totalWage;
     }
 
+    private int getTotalEmpWage(String companyName) {
+        return totalEmpWages.get(companyName);
+    }
+
     public static void main(String args[])
     {
         EmployeeWageComputation employeeWageComputation = new EmployeeWageComputation();
@@ -115,5 +123,8 @@ class EmployeeWageComputation implements IEmployeeWageComputation
         employeeWageComputation.addCompany("Apple", 9, 10, 70);
         employeeWageComputation.addCompany("Amazon", 19, 10, 150);
         employeeWageComputation.calculateTotalWage();
+        String query = "Google";
+        int totalWage = employeeWageComputation.getTotalEmpWage(query);
+        System.out.println("Total Employee Wage for " + query + " company is " + totalWage);
     }
 }
